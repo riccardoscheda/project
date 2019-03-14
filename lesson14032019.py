@@ -81,12 +81,16 @@ N_run = 100 # number of runs
 Nhits = 0.0 # number of points accepted
 pi = np.zeros(N_run) # values of pi
 
-
+start_time = time.time()
 
 x = np.random.rand(N,N_run)*2-1
 y = np.random.rand(N,N_run)*2-1
 
 res = x*x + y*y
-if res<1:
-    Nhits+=1
-    
+true_value = res < 1
+Nhits = np.sum(true_value,axis=0)
+
+pi = Nhits/N*4
+run_time = time.time()
+print("pi with ", N, " steps for ", N_run, " runs is ", np.mean(pi), " in ", run_time-start_time, " sec")
+print("Precision computation : ", np.abs(np.mean(pi)-np.pi))
