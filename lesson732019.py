@@ -14,13 +14,13 @@ rule30 = {"000": "1",
 def generate_state():
     return "1111111111111111111111111111111111111111111111111111101111111111111111111111111111111111111111111111111111111"
 
-def evolve(stato):
-    vecchio = stato[-1] + stato + stato[0]
-    nuovo = ""
-    for i in range(1,len(vecchio)-1):
-        key = vecchio[i-1:i+2]
-        nuovo =  nuovo + rule30[key]
-    return nuovo
+def evolve(state):
+    old = state[-1] + state + state[0]
+    new = ""
+    for i in range(1,len(old)-1):
+        key = old[i-1:i+2]
+        new =  new + rule30[key]
+    return new
 
 def simulation(nsteps):
     initial_state = generate_state()
